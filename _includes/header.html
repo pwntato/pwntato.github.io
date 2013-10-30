@@ -19,7 +19,7 @@
 
   <body style="padding-top: 70px;">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <a class="navbar-brand" href="#">{{ site.name }}</a>
+      <a class="navbar-brand" href="/">{{ site.name }}</a>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
       
@@ -28,10 +28,11 @@
             3D Printables <b class="caret"></b>
          </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Printing Tips</a></li>
             <li><a href="#">Bug-A-Salt Choke Tube</a></li>
           </ul>
         </li>
+        
+        <li><a href="#">3D Printing Tips</a></li>
         
         <li><a href="#">Code Projects</a></li>
         
@@ -46,15 +47,21 @@
     </nav>
 
     <div class="container">
+      <div class="row">
     
-      <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked">
-          <li>Test 1</li>
-          <li>Test 2</li>
-        </ul>
-      </div>
+        <div class="col-md-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="{% if page.link_location == 'welcome' %}active{% endif %}">
+              <a href="/">The J5 Project</a>
+            </li>
+            <li><a href="#">3D Printing Tips</a></li>
+            <li><a href="#">Bug-A-Salt Choke Tube</a></li>
+            <li><a href="#">Code Projects</a></li>
+            <li><a href="#">About Me</a></li>
+          </ul>
+        </div>
       
-      <div class="col-md-9">
+        <div class="col-md-9">
       
       
       
