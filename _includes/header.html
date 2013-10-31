@@ -33,7 +33,11 @@
           </ul>
           </li>
         
-          <li><a href="#">3D Printing Tips</a></li>
+          <li class="{% if page.link_location == 'printing_tips' %}active{% endif %}">
+            <a href="/3d_printing_tips">
+              3D Printing Tips
+            </a>
+          </li>
         
           <li><a href="#">Code Projects</a></li>
         
@@ -58,14 +62,23 @@
             <li class="{% if page.link_location == 'welcome' %}active{% endif %}">
               <a href="/">The J5 Project</a>
             </li>
-            <li><a href="#">3D Printing Tips</a></li>
+            
+            <li class="{% if page.link_location == 'printing_tips' %}active{% endif %}">
+              <a href="/3d_printing_tips">
+                3D Printing Tips
+              </a>
+            </li>
+            
             <li><a href="#">Bug-A-Salt Choke Tube</a></li>
+            
             <li><a href="#">Code Projects</a></li>
+            
             <li class="{% if page.link_location == 'about_me' %}active{% endif %}">
               <a href="/about_me">
                 About Me
               </a>
             </li>
+            
           </ul>
         </div>
       
