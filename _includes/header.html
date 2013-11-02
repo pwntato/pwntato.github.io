@@ -22,27 +22,6 @@
       <a class="navbar-brand" href="/">{{ site.name }}</a>
       
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-      
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            3D Printables <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Bug-A-Salt Choke Tube</a></li>
-          </ul>
-          </li>
-        
-          <li class="{% if page.link_location == 'printing_tips' %}active{% endif %}">
-            <a href="/3d_printing_tips">
-              3D Printing Tips
-            </a>
-          </li>
-        
-          <li class="{% if page.link_location == 'code_projects' %}active{% endif %}">
-            <a href="/code_projects">Code Projects</a>
-          </li>
-        </ul>
         <ul class="nav nav-bar pull-right">
           <li>
             <a href="https://twitter.com/j5project" class="twitter-follow-button navbar-btn" data-show-count="false" data-size="large">Follow @j5project</a>
@@ -67,7 +46,11 @@
               </a>
             </li>
             
-            <li><a href="#">Bug-A-Salt Choke Tube</a></li>
+            <li class="{% if page.link_location == 'choke_tube' %}active{% endif %}">
+              <a href="/choke_tube">
+                Bug-A-Salt Choke Tube
+              </a>
+            </li>
             
             <li class="{% if page.link_location == 'code_projects' %}active{% endif %}">
               <a href="/code_projects">Code Projects</a>
