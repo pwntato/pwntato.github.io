@@ -1,0 +1,112 @@
+---
+title: Printable Custom Coin
+
+layout: default
+
+link_location: printable_coin
+---
+<h1>Printable Custom Coin</h1>
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      I thought it would be cool to print custom coins.  There were a few goals I wanted to accomplish.  First, I wanted it to print without needing support material, so no angles over 45 degrees.  Second, I wanted the coins to be two sided.  Third, I wanted to write code so other people could easily turn their 2D designs into 3D printed two sided coins.
+    </p>
+    <p>
+      Let's start with the 2D design part.  I found this <a href="http://repraprip.blogspot.com/2011/05/inkscape-to-openscad-dxf-tutorial.html" target="_blank">tutorial</a> that does a good job explaining how to use <a href="http://inkscape.org/" target="_blank">Inkscape</a>, a fantastic free open source 2D graphics tool, to make 3D extrusions in <a href="http://www.openscad.org/" target="_blank">OpenSCAD</a>.  I highly recommend reading the tutorial.  I am just going to run through the steps here quickly at a high level.
+    </p>
+  </div>
+  <div class="col-md-6">
+    <a href="/img/j5_coin_printed.jpg" class="thumbnail" target="_blank">
+      <img src="/img/j5_coin_printed.jpg" />
+    </a>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      After getting <a href="http://inkscape.org/" target="_blank">Inkscape</a> installed, open up a new document.  There are some settings you can change to make designing your coin easier.  In the file menu, open up document properties.  In there switch the default units to mm.  In the custom size area, switch it to mm and set both the height and width to be the diameter of the coin.  The default coin diameter is 40mm, but that is really easy to change in the <a href="http://www.openscad.org/" target="_blank">OpenSCAD</a> script.
+    </p>
+    
+    <p>
+      Next I find it handy to make a 40mm circle to help me get an idea for dimensions.  We don't want to export the circle though, so once you're happy with it, open the layer menu and add a layer.  Only the top layer will get exported through this process.
+    </p>
+    
+    <p>
+      Now for the fun part, make your design!  How you make your design here does matter.  You need to create the basic shapes you like, then select them and convert the objects to paths under the paths menu.  Next you can use the boolean operations under the paths menu (union, difference, intersection, etc.) to turn the simple shapes into more complex ones.  The boolean operations are important.  If you want to make a donut, you need to take the difference of the big circle and the little circle.  Just making a white circle in the middle isn't enough.
+    </p>
+    
+    <p>
+      This is the front and back I made for my coin.  The colors don't matter at all.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <a href="/img/j5_logo_front_design.png" class="thumbnail" target="_blank">
+      <img src="/img/j5_logo_front_design.png" />
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/img/j5_url_back_design.png" class="thumbnail" target="_blank">
+      <img src="/img/j5_url_back_design.png" />
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      Now the finishing steps.  Select your whole design and go to the extensions menu.  Then under modify path, click flatten beziers.  The tutorial suggests a setting of 0.3 and I found that worked well for me.  Now your designs are are ready for export.  Under the file menu choose save as and then select the dxf format.  For it to work with my <a href="http://www.openscad.org/" target="_blank">OpenSCAD</a> script seamlessly, save it to the same directory as the script using the file names front.dxf and back.dxf.  I'll let you guess why.
+    </p>
+    
+    <p>
+      That's it for how to make your own custom coin using my script.
+    </p>
+    
+    <p>
+      Now a bit about the script itself.  The coin is an octagon instead of a circle, both so it doesn't have overhangs over 45 degrees, but also because it looks cool.  The overhangs are important since the coin prints on its edge.  Printing on its edge is what allows it to be two sided.  There is still the issue of the extruded design.  What about overhangs on the extrusion?  
+    </p>
+    
+    <p>
+      That is where the minkowski transformation comes in.  It's interesting to learn about, but basically it takes one shape and uses it to trace around another.  This script uses it to trace around your extruded design with a 45 degree cone.  That makes it so your design is printable in any orientation.  The script is parameterized, so you can tweak how raised your design is, but the higher it's raised, the wider the tapering has to be to make it printable.  The default height is 1mm and seems to strike a good balance.
+    </p>
+    
+    <p>
+      Here is what my design looks like in OpenSCAD.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <a href="/img/j5_coin_model_front.png" class="thumbnail" target="_blank">
+      <img src="/img/j5_coin_model_front.png" />
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="/img/j5_coin_model_back.png" class="thumbnail" target="_blank">
+      <img src="/img/j5_coin_model_back.png" />
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      If you would like to make your own 3D printable coin or print one with my logo and URL on it, clone my <a href="https://github.com/pwntato/custom_printable_coin" target="_blank">github repo</a>.
+    </p>
+    
+    <p>
+      To get the latest news about my projects <a href="https://twitter.com/j5project" target="_blank">follow me on twitter</a>.
+    </p>
+  </div>
+</div>
+
+
+
+
+
+
