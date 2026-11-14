@@ -190,6 +190,7 @@ section { padding-block: 40px 24px; }
 
 .card.small h3 { font-size: 19px; }
 .card.small .fig img { aspect-ratio: 4 / 3; }
+.fig img.render { object-fit: contain; padding: 12px; }
 .fig img.contain { object-fit: contain; background: #000; image-rendering: pixelated; }
 
 /* NotoriousMCP drawing */
@@ -478,7 +479,7 @@ section { padding-block: 40px 24px; }
         <div class="body"><h3>Custom Printable Coin</h3><p>Turn two 2D designs from Inkscape into a two-sided coin that prints without supports.</p><div class="links"><a href="https://github.com/pwntato/custom_printable_coin">Source</a></div></div>
       </article>
       <article class="card small">
-        <div class="fig"><img src="img/frame.webp" alt="Printed picture frame" width="900" height="1099"></div>
+        <div class="fig"><img class="render" src="img/frame_cad.webp" alt="Picture frame design in OpenSCAD, with hearts and stars around the border" width="347" height="416"></div>
         <div class="body"><h3>Picture Frame</h3><p>The frames we printed for our family photo gifts one holiday season.</p><div class="links"><a href="https://github.com/pwntato/frame">Source</a></div></div>
       </article>
     </div>
