@@ -1,40 +1,515 @@
----
-title: Welcome to the J5 Project
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jimmy Hendrix</title>
+<meta name="description" content="Jimmy Hendrix, Staff Software Engineer in Eugene, Oregon. Personal AI projects, other software, and 3D printable designs.">
+<meta property="og:title" content="Jimmy Hendrix">
+<meta property="og:description" content="Personal AI projects, other software, and 3D printable designs.">
+<meta property="og:image" content="https://pwntato.github.io/img/og.jpg">
+<meta property="og:url" content="https://pwntato.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a drafting sheet. Graph-paper ground, ink-ruled spec cards, a title block to close the sheet. */
+:root {
+  --paper: #f2f5f7;
+  --grid: #dfe6ec;
+  --grid-major: #cdd7e0;
+  --ink: #16202b;
+  --muted: #566577;
+  --line: #16202b;
+  --accent: #2341c9;      /* layout-fluid blue */
+  --tag: #ffe45c;         /* highlighter */
+  --tag-ink: #16202b;
+  --card: #fbfcfd;
+  --font-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e2740; --grid: #163352; --grid-major: #1d4064;
+    --ink: #e6eef6; --muted: #9fb5ca; --line: #b9cde0;
+    --accent: #ffc845; --tag: #ffc845; --tag-ink: #0e2740; --card: #112d4a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e2740; --grid: #163352; --grid-major: #1d4064;
+  --ink: #e6eef6; --muted: #9fb5ca; --line: #b9cde0;
+  --accent: #ffc845; --tag: #ffc845; --tag-ink: #0e2740; --card: #112d4a;
+  color-scheme: dark;
+}
 
-layout: default
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+img { display: block; max-width: 100%; height: auto; }
+.sheet { max-width: 1120px; margin: 0 auto; }
+.mono { font-family: var(--font-mono); }
+.label {
+  font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
 
-link_location: welcome
----
+/* Header */
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px 24px; padding-block: 20px; border-bottom: 1.5px solid var(--line);
+}
+.wordmark {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+  font-size: 18px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); text-decoration: none;
+}
+.top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.top nav a {
+  font-family: var(--font-mono); font-size: 13px; color: var(--ink); text-decoration: none;
+}
+.top nav a:hover { color: var(--accent); }
+.top nav .ext::after { content: " ↗"; color: var(--muted); }
 
-<div class="jumbotron">
-  <div class="container">
-    <h1>The J5 Project</h1>
-    <p>Welcome to the J5 Project, a place to share my open source 3D Printable CAD designs.</p>
+/* Hero */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 48px; align-items: center; padding-block: 64px 56px;
+}
+.hero h1 {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: clamp(40px, 6.4vw, 76px); line-height: .98; letter-spacing: -.015em;
+  margin: 14px 0 0; text-wrap: balance;
+}
+.dim {
+  /* dimension line under the name */
+  position: relative; margin: 22px 0 26px; height: 18px; color: var(--accent);
+}
+.dim::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 8px; border-top: 1.5px solid currentColor;
+}
+.dim .tick { position: absolute; top: 0; width: 1.5px; height: 18px; background: currentColor; }
+.dim .tick.l { left: 0; } .dim .tick.r { right: 0; }
+.dim .arr { position: absolute; top: 3px; width: 0; height: 0; border: 5.5px solid transparent; }
+.dim .arr.l { left: 1.5px; border-right: 9px solid currentColor; border-left: 0; }
+.dim .arr.r { right: 1.5px; border-left: 9px solid currentColor; border-right: 0; }
+.dim span {
+  position: absolute; left: 50%; top: -1px; transform: translateX(-50%);
+  background: var(--paper); padding: 0 10px; font-family: var(--font-mono);
+  font-size: 12.5px; font-weight: 600; letter-spacing: .06em; white-space: nowrap;
+}
+.lede { font-size: 19px; max-width: 34em; margin: 0; }
+.lede + .lede { margin-top: 14px; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  font-family: var(--font-mono); font-size: 13.5px; font-weight: 500; text-decoration: none;
+  color: var(--ink); border: 1.5px solid var(--line); padding: 9px 14px; background: var(--card);
+}
+.btn:hover { color: var(--paper); background: var(--ink); }
+
+.portrait { position: relative; margin: 0; justify-self: end; width: min(100%, 360px); }
+.portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1.5px solid var(--line); }
+.portrait::before, .portrait::after {
+  /* registration corners */
+  content: ""; position: absolute; width: 22px; height: 22px; border-color: var(--accent); border-style: solid;
+}
+.portrait::before { top: -10px; left: -10px; border-width: 2px 0 0 2px; }
+.portrait::after { bottom: 26px; right: -10px; border-width: 0 2px 2px 0; }
+.portrait figcaption { margin-top: 10px; }
+
+/* Section heads */
+section { padding-block: 40px 24px; }
+.sec-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  border-top: 1.5px solid var(--line); padding-top: 14px; margin-bottom: 28px;
+}
+.sec-head h2 {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+  font-size: clamp(26px, 3.4vw, 36px); line-height: 1.05; margin: 0; text-transform: uppercase; letter-spacing: .01em;
+}
+.sec-head p { margin: 0; max-width: 34em; color: var(--muted); font-size: 15.5px; }
+.group-label { margin: 34px 0 14px; display: flex; align-items: center; gap: 12px; }
+.group-label::after { content: ""; flex: 1; border-top: 1px dashed var(--muted); opacity: .6; }
+
+/* Spec cards */
+.grid { display: grid; gap: 24px; }
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.card {
+  background: var(--card); border: 1.5px solid var(--line);
+  display: flex; flex-direction: column; min-width: 0;
+}
+.fig { position: relative; border-bottom: 1.5px solid var(--line); background: var(--paper); overflow: hidden; }
+.fig img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.fig .tagno {
+  position: absolute; left: 0; top: 0; background: var(--ink); color: var(--paper);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; padding: 4px 8px;
+}
+.fig a.play { display: block; position: relative; }
+.fig a.play::after {
+  content: "▶"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 64px; height: 64px; display: grid; place-items: center; padding-left: 4px;
+  background: var(--tag); color: var(--tag-ink); border: 1.5px solid var(--tag-ink); font-size: 22px; border-radius: 50%;
+}
+.fig a.play:hover::after { transform: translate(-50%, -50%) scale(1.06); }
+.body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.card h3 {
+  font-family: var(--font-display); font-weight: 750; font-stretch: 108%;
+  font-size: 23px; line-height: 1.15; margin: 0; text-wrap: balance;
+}
+.card p { margin: 0; font-size: 15.5px; line-height: 1.6; }
+.spec {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr); margin: 4px 0 0;
+  border-top: 1px solid var(--grid-major); font-size: 13px;
+}
+.spec dt, .spec dd { padding: 6px 0; border-bottom: 1px solid var(--grid-major); margin: 0; }
+.spec dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-right: 16px; }
+.spec dd { font-family: var(--font-mono); font-size: 12.5px; }
+.status { background: var(--tag); color: var(--tag-ink); padding: 1px 6px; font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: auto; padding-top: 6px; }
+.links a { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
+.links a::after { content: " ↗"; }
+
+.card.small h3 { font-size: 19px; }
+.card.small .fig img { aspect-ratio: 4 / 3; }
+.fig img.contain { object-fit: contain; background: #000; image-rendering: pixelated; }
+
+/* NotoriousMCP drawing */
+.drawing { aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 14px; }
+.drawing svg { width: 100%; height: 100%; }
+.drawing .box { fill: var(--card); stroke: var(--line); stroke-width: 1.5; }
+.drawing .box.hot { stroke: var(--accent); stroke-width: 2; }
+.drawing .wire { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.drawing .head { fill: var(--accent); }
+.drawing text { fill: var(--ink); font-family: var(--font-mono); font-size: 12px; }
+.drawing text.sub { fill: var(--muted); font-size: 10px; letter-spacing: .06em; }
+
+/* Featured 3D model */
+.feature {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  background: var(--card); border: 1.5px solid var(--line);
+}
+.photos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 1.5px; background: var(--line); border-right: 1.5px solid var(--line); }
+.photos img { width: 100%; height: 100%; object-fit: cover; background: var(--paper); }
+.photos .main { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+.photos .sub { aspect-ratio: 1; }
+.feature .body { padding: 28px; gap: 14px; }
+.feature h3 { font-size: 30px; }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; }
+.about .prose p { margin: 0 0 16px; max-width: 36em; }
+.timeline { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--line); }
+.timeline li {
+  display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--grid-major); font-size: 14.5px;
+}
+.timeline .yr { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+.timeline b { font-weight: 600; }
+
+/* Title block */
+.titleblock {
+  margin-block: 48px 40px; border: 1.5px solid var(--line); background: var(--card);
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+.titleblock > div { padding: 10px 14px; border-right: 1px solid var(--line); min-width: 0; }
+.titleblock > div:last-child { border-right: 0; }
+.titleblock .v { font-family: var(--font-mono); font-size: 13.5px; margin-top: 2px; overflow-wrap: anywhere; }
+.titleblock .name { font-family: var(--font-display); font-weight: 800; font-stretch: 118%; font-size: 20px; text-transform: uppercase; }
+
+@media (max-width: 900px) {
+  .hero, .about, .feature { grid-template-columns: minmax(0, 1fr); }
+  .portrait { justify-self: start; width: min(100%, 300px); }
+  .grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .photos { border-right: 0; border-bottom: 1.5px solid var(--line); }
+  .titleblock { grid-template-columns: 1fr 1fr; }
+  .titleblock > div:nth-child(2) { border-right: 0; }
+  .titleblock > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 640px) {
+  .grid.two, .grid.three { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 40px; gap: 36px; }
+  .lede { font-size: 17.5px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .fig a.play::after { transition: transform .15s ease, background .15s ease, color .15s ease; }
+}
+</style>
+
+</head>
+<body>
+<div class="sheet">
+  <header class="top">
+    <a class="wordmark" href="#top">Jimmy Hendrix</a>
+    <nav aria-label="Site">
+      <a href="#software">Software</a>
+      <a href="#models">3D models</a>
+      <a href="#about">About</a>
+      <a class="ext" href="https://github.com/pwntato">GitHub</a>
+      <a class="ext" href="https://www.linkedin.com/in/jimmy-hendrix-11a9931">LinkedIn</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="top">
+    <div>
+      <div class="label">Staff Software Engineer · Eugene, Oregon</div>
+      <h1>I build software, and sometimes the things it runs on.</h1>
+      <div class="dim" aria-hidden="true"><i class="tick l"></i><i class="arr l"></i><span>2001 → 2026 · 25 YRS</span><i class="arr r"></i><i class="tick r"></i></div>
+      <p class="lede">My day job is AI systems and developer tooling. On my own time I build whatever I'm curious about: agents that teach themselves to play games, an encrypted message board, a memory server for my AI tools, and plastic parts designed in code.</p>
+      <div class="hero-links">
+        <a class="btn" href="#software">See the projects</a>
+        <a class="btn" href="https://github.com/pwntato">github.com/pwntato</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <img src="img/me.webp" alt="Jimmy Hendrix outdoors with the ocean behind him" width="640" height="620">
+      <figcaption class="label">Fig. 1 · Author, field conditions</figcaption>
+    </figure>
   </div>
+
+  <section id="software">
+    <div class="sec-head">
+      <h2>Software</h2>
+      <p>Finished personal projects, all open source. AI work first, then everything else, newest first.</p>
+    </div>
+
+    <div class="group-label label">AI and machine learning</div>
+    <div class="grid two">
+      <article class="card">
+        <div class="fig">
+          <div class="drawing">
+            <svg viewBox="0 0 520 300" role="img" aria-label="Diagram: an MCP client calls API Gateway, which invokes a Go Lambda backed by DynamoDB and S3">
+              <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+              <rect class="box" x="16" y="118" width="112" height="56"/>
+              <text x="72" y="144" text-anchor="middle">MCP client</text>
+              <text class="sub" x="72" y="160" text-anchor="middle">CLAUDE, ETC.</text>
+              <path class="wire" d="M128 146 H186" marker-end="url(#ah)"/>
+              <rect class="box" x="190" y="118" width="120" height="56"/>
+              <text x="250" y="144" text-anchor="middle">API Gateway</text>
+              <text class="sub" x="250" y="160" text-anchor="middle">OAUTH 2.0</text>
+              <path class="wire" d="M310 146 H368" marker-end="url(#ah)"/>
+              <rect class="box hot" x="372" y="118" width="132" height="56"/>
+              <text x="438" y="144" text-anchor="middle">Lambda · Go</text>
+              <text class="sub" x="438" y="160" text-anchor="middle">ARM64 · 256 MB</text>
+              <path class="wire" d="M410 174 V222" marker-end="url(#ah)"/>
+              <path class="wire" d="M470 174 V222" marker-end="url(#ah)"/>
+              <rect class="box" x="352" y="226" width="86" height="48"/>
+              <text x="395" y="255" text-anchor="middle">DynamoDB</text>
+              <rect class="box" x="446" y="226" width="58" height="48"/>
+              <text x="475" y="255" text-anchor="middle">S3</text>
+              <text class="sub" x="16" y="40">NOTES · TODOS · FILES · LLM MEMORY</text>
+              <path d="M16 52 H504" stroke="var(--grid-major)" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <span class="tagno">FIG. 2</span>
+        </div>
+        <div class="body">
+          <h3>NotoriousMCP</h3>
+          <p>A self-hosted MCP server that gives AI assistants somewhere to keep notes, todo lists, files, and long-term memory. It runs serverless on AWS with its own OAuth 2.0 server, deploys through Terraform and GitHub Actions, and ships with an Agent Skill that teaches the model how to use its memory.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Go · Lambda · DynamoDB · S3 · Terraform</dd>
+            <dt>Year</dt><dd>2026</dd>
+            <dt>Status</dt><dd><span class="status">In daily use</span></dd>
+          </dl>
+          <div class="links"><a href="https://github.com/pwntato/notoriousmcp">Source</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="fig">
+          <a class="play" href="https://youtu.be/2jsLlFzWb2s" aria-label="Watch the Ms. Pac-Man demo on YouTube"><img src="img/yt-pacman.webp" alt="A trained model playing Ms. Pac-Man" width="480" height="360"></a>
+          <span class="tagno">FIG. 3</span>
+        </div>
+        <div class="body">
+          <h3>Ms. Pac-Man AI</h3>
+          <p>A neural network that learns Atari games from raw pixels. It reads a stack of grayscale frames so it can sense motion, runs them through convolutional layers, and uses reinforcement learning so the score becomes the teacher.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Python · PyTorch · Gymnasium · OpenCV</dd>
+            <dt>Year</dt><dd>2023</dd>
+            <dt>Status</dt><dd><span class="status">Trained model in repo</span></dd>
+          </dl>
+          <div class="links"><a href="https://youtu.be/2jsLlFzWb2s">Demo video</a><a href="https://github.com/pwntato/computer_vision_playground">Source</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="fig">
+          <a class="play" href="https://youtu.be/W_cV97VL5pE" aria-label="Watch the Tetris AI demo on YouTube"><img src="img/yt-tetris.webp" alt="A trained model playing Tetris" width="480" height="360"></a>
+          <span class="tagno">FIG. 4</span>
+        </div>
+        <div class="body">
+          <h3>Tetris AI</h3>
+          <p>For every possible placement, the model scores the board it would leave behind: lines cleared, holes, bumpiness, and height. It picks the best one and learns from the result at the end of each game. You can also play it yourself and try to beat a trained model.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Python · PyTorch · Pygame</dd>
+            <dt>Year</dt><dd>2023</dd>
+            <dt>Status</dt><dd><span class="status">Trained model in repo</span></dd>
+          </dl>
+          <div class="links"><a href="https://youtu.be/W_cV97VL5pE">Demo video</a><a href="https://youtu.be/JFv-I273tug">Watch it train</a><a href="https://github.com/pwntato/tetris-ai">Source</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="group-label label">Other software</div>
+    <div class="grid two">
+      <article class="card">
+        <div class="fig">
+          <img src="img/ubb-home-group.webp" alt="UndergroundBB home screen showing a group" width="844" height="760">
+          <span class="tagno">FIG. 5</span>
+        </div>
+        <div class="body">
+          <h3>UndergroundBB</h3>
+          <p>An end-to-end encrypted message board. Posts are encrypted in your browser before they reach the server, and the server never holds the keys. Your password never leaves your device either: login is a signed challenge.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Go · TypeScript · React · Lambda · DynamoDB</dd>
+            <dt>Year</dt><dd>2026</dd>
+            <dt>Status</dt><dd><span class="status">Live, early release</span></dd>
+          </dl>
+          <div class="links"><a href="https://undergroundbb.com">undergroundbb.com</a><a href="https://github.com/pwntato/undergroundbb">Source</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="fig">
+          <img src="img/nebuloid.webp" alt="Nebuloid gameplay: a ship among colored nebulae" width="900" height="474">
+          <span class="tagno">FIG. 6</span>
+        </div>
+        <div class="body">
+          <h3>Nebuloid</h3>
+          <p>A top-down space shooter. Fly through colored nebulae to change your laser color, which is the only way through barriers of the same color, then take down the mother ship.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Java</dd>
+            <dt>Year</dt><dd>2013</dd>
+          </dl>
+          <div class="links"><a href="https://github.com/pwntato/nebuloid">Source</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="grid two" style="margin-top:24px">
+      <article class="card small">
+        <div class="fig">
+          <img class="contain" src="img/pointAndPixelCthulu.webp" alt="Pixel art of Cthulhu made in PointAndPixel" width="350" height="390">
+          <span class="tagno">FIG. 7</span>
+        </div>
+        <div class="body">
+          <h3>PointAndPixel</h3>
+          <p>A pixel art editor. Draw freehand, or import a photo and pixelize it. I wrote it after watching a friend make pixel art in a spreadsheet.</p>
+          <dl class="spec"><dt>Stack</dt><dd>Java</dd><dt>Year</dt><dd>2011</dd></dl>
+          <div class="links"><a href="https://github.com/pwntato/PointAndPixel">Source</a></div>
+        </div>
+      </article>
+      <article class="card small">
+        <div class="fig">
+          <img src="img/picrypt.webp" alt="The Picrypt desktop window" width="510" height="370">
+          <span class="tagno">FIG. 8</span>
+        </div>
+        <div class="body">
+          <h3>Picrypt</h3>
+          <p>Steganography: encrypt a file to a specific person with RSA and AES, then hide it inside an ordinary image you can share anywhere that keeps the original pixels.</p>
+          <dl class="spec"><dt>Stack</dt><dd>Java</dd><dt>Year</dt><dd>2011</dd></dl>
+          <div class="links"><a href="https://github.com/pwntato/picrypt">Source</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="models">
+    <div class="sec-head">
+      <h2>3D models</h2>
+      <p>Designed in OpenSCAD, so every dimension is a parameter you can change. All of them print without supports.</p>
+    </div>
+
+    <article class="feature">
+      <div class="photos">
+        <img class="main" src="img/divider-shelf-books.webp" alt="Printed divider clipped to a library shelf beside picture books" width="1200" height="1600">
+        <img class="sub" src="img/divider-shelf-side.webp" alt="Divider on an empty shelf, side view" width="1200" height="1600">
+        <img class="sub" src="img/divider-shelf-front.webp" alt="Divider from the front with a letter T label" width="1200" height="1600">
+      </div>
+      <div class="body">
+        <div class="label">Newest · Nov 2026</div>
+        <h3>Clip-On Library Shelf Divider</h3>
+        <p>A local elementary school librarian needed a lot of these. Store-bought ones run about $4.50 each, so I modeled one from photos and caliper measurements. A springy hook clips onto the shelf edge, and a ledge along the bottom holds a label. It costs about $1 of PETG to print.</p>
+        <dl class="spec">
+          <dt>Material</dt><dd>PETG · 0.2 mm layers · 15% infill</dd>
+          <dt>Size</dt><dd>38 mm strip · 158 mm wall · 2.7 mm walls</dd>
+          <dt>Print</dt><dd>On its side, no supports, about 1.7 h</dd>
+          <dt>License</dt><dd>CC BY-NC 4.0</dd>
+        </dl>
+        <div class="links">
+          <a href="https://makerworld.com/en/models/3588411-clip-on-library-shelf-divider-with-label-ledge">MakerWorld</a>
+          <a href="https://github.com/pwntato/library_shelf_divider">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="group-label label">From the archive · 2013 to 2014</div>
+    <div class="grid three">
+      <article class="card small">
+        <div class="fig"><img src="img/bandit_mk2.webp" alt="Printed Bandit MK2 rubber band gun" width="900" height="381"></div>
+        <div class="body"><h3>Bandit MK2 Rubber Band Gun</h3><p>A faster-printing take on the MK1, with a modular barrel you can extend as long as you like.</p><div class="links"><a href="https://github.com/pwntato/bandit_mk2">Source</a></div></div>
+      </article>
+      <article class="card small">
+        <div class="fig"><img src="img/bandit_mk1.webp" alt="Printed Bandit MK1 rubber band gun" width="796" height="419"></div>
+        <div class="body"><h3>Bandit MK1 Rubber Band Gun</h3><p>Started as an excuse to design a trigger group. Every part is printable, so there's nothing to buy.</p><div class="links"><a href="https://github.com/pwntato/bandit_mk1">Source</a></div></div>
+      </article>
+      <article class="card small">
+        <div class="fig"><img src="img/ant_trap_top_down.webp" alt="Printed ant trap from above" width="900" height="551"></div>
+        <div class="body"><h3>Ant Trap</h3><p>A spill-resistant borax bait dispenser, so the ants get the poison and the kids, cat, and dog don't.</p><div class="links"><a href="https://github.com/pwntato/ant_trap">Source</a></div></div>
+      </article>
+      <article class="card small">
+        <div class="fig"><img src="img/j5_coin_printed.webp" alt="Two-sided printed custom coin" width="900" height="506"></div>
+        <div class="body"><h3>Custom Printable Coin</h3><p>Turn two 2D designs from Inkscape into a two-sided coin that prints without supports.</p><div class="links"><a href="https://github.com/pwntato/custom_printable_coin">Source</a></div></div>
+      </article>
+      <article class="card small">
+        <div class="fig"><img src="img/frame.webp" alt="Printed picture frame" width="900" height="1099"></div>
+        <div class="body"><h3>Picture Frame</h3><p>The frames we printed for our family photo gifts one holiday season.</p><div class="links"><a href="https://github.com/pwntato/frame">Source</a></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about">
+      <div class="prose">
+        <p>I'm a Staff Software Engineer in Eugene, Oregon, and I've been writing software professionally since 2001. Most of that has been backend work: APIs, databases, and keeping systems fast as they grow. I also hold a US patent from my time at Unisys.</p>
+        <p>These days my work is mostly AI. At Aurora Solar I built Sunny, an AI assistant the whole company uses in Slack, and an MCP server that connects Claude to our internal tools. I like building the pieces that make other engineers faster, and I'm drawn to work that matters, like clean energy and education.</p>
+        <p>I first saw a 3D printer at SIGGRAPH in my late teens and waited more than a decade to own one. When I found OpenSCAD, I could use programming to make real objects, and I've been designing printable things ever since. My most recent one is a shelf divider for a school library.</p>
+      </div>
+      <ol class="timeline" aria-label="Where I've worked">
+        <li><span class="yr">2023–now</span><span><b>Aurora Solar</b> · Staff Software Engineer</span></li>
+        <li><span class="yr">2022</span><span><b>DUST Identity</b> · Senior Back-End Engineer</span></li>
+        <li><span class="yr">2021–22</span><span><b>Mercato</b> · Staff Software Engineer</span></li>
+        <li><span class="yr">2012–21</span><span><b>Palo Alto Software</b> · Software Architect</span></li>
+        <li><span class="yr">2011–12</span><span><b>DECK Monitoring</b> · Lead Developer, solar monitoring</span></li>
+        <li><span class="yr">2010–11</span><span><b>Palo Alto Software</b> · Software Engineer, launched LivePlan</span></li>
+        <li><span class="yr">2001–10</span><span><b>Unisys, Avanade, RHI</b> and others · Software Engineer</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="titleblock">
+    <div><div class="label">Drawn by</div><div class="name">Jimmy Hendrix</div></div>
+    <div><div class="label">Location</div><div class="v">Eugene, OR</div></div>
+    <div><div class="label">GitHub</div><div class="v"><a href="https://github.com/pwntato">pwntato</a></div></div>
+    <div><div class="label">LinkedIn</div><div class="v"><a href="https://www.linkedin.com/in/jimmy-hendrix-11a9931">jimmy-hendrix</a></div></div>
+  </footer>
 </div>
-
-<p>
-Hi!  I'm Jimmy Hendrix, welcome to my projects page!
-</p>
-<p>
-I spend my days working on <a href="http://www.liveplan.com/" target="_blank">LivePlan.com</a>, making fantastic business planning software.  Then I split my free time between my awesome family and my side projects.  My early side projects were interesting bits of software, but now I focus mostly on CAD for 3D printing.
-</p>
-<p>
-I first discovered 3D printers at Siggraph in my late teens and dreamed of one day having my own.  That day finally came over a decade later when consumer 3D printers fell into my price range.
-</p>
-<p>
-Then came the question: what now?
-</p>
-<p>
-After some experimenting with different technologies, I found <a href="http://www.openscad.org/" target="_blank">OpenSCAD</a>.  I could leverage my programming skills to make real things!  That's just what I did.
-</p>
-<p>
-From a lot of trial and error, I got familiar with the limitations of what consumer 3D printers are able to do well.  It became my goal to design neat things that would be easy to print reliably.  I launched this page to share those projects with you.
-</p>
-<p>
-Take a look around and <a href="https://twitter.com/j5project" target="_blank">follow me on twitter</a> for updates as I add more projects.
-</p>
-<p>
-Thanks for stopping by!
-</p>
-
+</body>
+</html>
