@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jimmy Hendrix</title>
-<meta name="description" content="Jimmy Hendrix, Staff Software Engineer in Eugene, Oregon. Personal AI projects, other software, and 3D printable designs.">
+<meta name="description" content="Jimmy Hendrix, Staff Software Engineer in Eugene, Oregon. Personal AI projects and other software.">
 <meta property="og:title" content="Jimmy Hendrix">
-<meta property="og:description" content="Personal AI projects, other software, and 3D printable designs.">
+<meta property="og:description" content="Personal AI projects and other software.">
 <meta property="og:image" content="https://pwntato.github.io/img/og.jpg">
 <meta property="og:url" content="https://pwntato.github.io/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -202,18 +202,6 @@ section { padding-block: 40px 24px; }
 .drawing text { fill: var(--ink); font-family: var(--font-mono); font-size: 12px; }
 .drawing text.sub { fill: var(--muted); font-size: 10px; letter-spacing: .06em; }
 
-/* Featured 3D model */
-.feature {
-  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  background: var(--card); border: 1.5px solid var(--line);
-}
-.photos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 1.5px; background: var(--line); border-right: 1.5px solid var(--line); }
-.photos img { width: 100%; height: 100%; object-fit: cover; background: var(--paper); }
-.photos .main { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
-.photos .sub { aspect-ratio: 1; }
-.feature .body { padding: 28px; gap: 14px; }
-.feature h3 { font-size: 30px; }
-
 /* About */
 .about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; }
 .about .prose p { margin: 0 0 16px; max-width: 36em; }
@@ -236,10 +224,9 @@ section { padding-block: 40px 24px; }
 .titleblock .name { font-family: var(--font-display); font-weight: 800; font-stretch: 118%; font-size: 20px; text-transform: uppercase; }
 
 @media (max-width: 900px) {
-  .hero, .about, .feature { grid-template-columns: minmax(0, 1fr); }
+  .hero, .about { grid-template-columns: minmax(0, 1fr); }
   .portrait { justify-self: start; width: min(100%, 300px); }
   .grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .photos { border-right: 0; border-bottom: 1.5px solid var(--line); }
   .titleblock { grid-template-columns: 1fr 1fr; }
   .titleblock > div:nth-child(2) { border-right: 0; }
   .titleblock > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -261,7 +248,6 @@ section { padding-block: 40px 24px; }
     <a class="wordmark" href="#top">Jimmy Hendrix</a>
     <nav aria-label="Site">
       <a href="#software">Software</a>
-      <a href="#models">3D models</a>
       <a href="#about">About</a>
       <a class="ext" href="https://github.com/pwntato">GitHub</a>
       <a class="ext" href="https://www.linkedin.com/in/jimmy-hendrix-11a9931">LinkedIn</a>
@@ -430,67 +416,13 @@ section { padding-block: 40px 24px; }
     </div>
   </section>
 
-  <section id="models">
-    <div class="sec-head">
-      <h2>3D models</h2>
-      <p>Designed in OpenSCAD, so every dimension is a parameter you can change. All of them print without supports.</p>
-    </div>
-
-    <article class="feature">
-      <div class="photos">
-        <img class="main" src="img/divider-shelf-books.webp" alt="Printed divider clipped to a library shelf beside picture books" width="1200" height="1600">
-        <img class="sub" src="img/divider-shelf-side.webp" alt="Divider on an empty shelf, side view" width="1200" height="1600">
-        <img class="sub" src="img/divider-shelf-front.webp" alt="Divider from the front with a letter T label" width="1200" height="1600">
-      </div>
-      <div class="body">
-        <div class="label">Newest · Nov 2026</div>
-        <h3>Clip-On Library Shelf Divider</h3>
-        <p>A local elementary school librarian needed a lot of these. Store-bought ones run about $4.50 each, so I modeled one from photos and caliper measurements. A springy hook clips onto the shelf edge, and a ledge along the bottom holds a label. It costs about $1 of PETG to print.</p>
-        <dl class="spec">
-          <dt>Material</dt><dd>PETG · 0.2 mm layers · 15% infill</dd>
-          <dt>Size</dt><dd>38 mm strip · 158 mm wall · 2.7 mm walls</dd>
-          <dt>Print</dt><dd>On its side, no supports, about 1.7 h</dd>
-          <dt>License</dt><dd>CC BY-NC 4.0</dd>
-        </dl>
-        <div class="links">
-          <a href="https://makerworld.com/en/models/3588411-clip-on-library-shelf-divider-with-label-ledge">MakerWorld</a>
-          <a href="https://github.com/pwntato/library_shelf_divider">Source</a>
-        </div>
-      </div>
-    </article>
-
-    <div class="group-label label">From the archive · 2013 to 2014</div>
-    <div class="grid three">
-      <article class="card small">
-        <div class="fig"><img src="img/bandit_mk2.webp" alt="Printed Bandit MK2 rubber band gun" width="900" height="381"></div>
-        <div class="body"><h3>Bandit MK2 Rubber Band Gun</h3><p>A faster-printing take on the MK1, with a modular barrel you can extend as long as you like.</p><div class="links"><a href="https://github.com/pwntato/bandit_mk2">Source</a></div></div>
-      </article>
-      <article class="card small">
-        <div class="fig"><img src="img/bandit_mk1.webp" alt="Printed Bandit MK1 rubber band gun" width="796" height="419"></div>
-        <div class="body"><h3>Bandit MK1 Rubber Band Gun</h3><p>Started as an excuse to design a trigger group. Every part is printable, so there's nothing to buy.</p><div class="links"><a href="https://github.com/pwntato/bandit_mk1">Source</a></div></div>
-      </article>
-      <article class="card small">
-        <div class="fig"><img src="img/ant_trap_top_down.webp" alt="Printed ant trap from above" width="900" height="551"></div>
-        <div class="body"><h3>Ant Trap</h3><p>A spill-resistant borax bait dispenser, so the ants get the poison and the kids, cat, and dog don't.</p><div class="links"><a href="https://github.com/pwntato/ant_trap">Source</a></div></div>
-      </article>
-      <article class="card small">
-        <div class="fig"><img src="img/j5_coin_printed.webp" alt="Two-sided printed custom coin" width="900" height="506"></div>
-        <div class="body"><h3>Custom Printable Coin</h3><p>Turn two 2D designs from Inkscape into a two-sided coin that prints without supports.</p><div class="links"><a href="https://github.com/pwntato/custom_printable_coin">Source</a></div></div>
-      </article>
-      <article class="card small">
-        <div class="fig"><img src="img/frame.webp" alt="Printed picture frame" width="900" height="1099"></div>
-        <div class="body"><h3>Picture Frame</h3><p>The frames we printed for our family photo gifts one holiday season.</p><div class="links"><a href="https://github.com/pwntato/frame">Source</a></div></div>
-      </article>
-    </div>
-  </section>
-
   <section id="about">
     <div class="sec-head"><h2>About</h2></div>
     <div class="about">
       <div class="prose">
         <p>I'm a Staff Software Engineer in Eugene, Oregon, and I've been writing software professionally since 2001. Most of that has been backend work: APIs, databases, and keeping systems fast as they grow. I also hold a US patent from my time at Unisys.</p>
         <p>These days my work is mostly AI. At Aurora Solar I built Sunny, an AI assistant the whole company uses in Slack, and an MCP server that connects Claude to our internal tools. I like building the pieces that make other engineers faster, and I'm drawn to work that matters, like clean energy and education.</p>
-        <p>I first saw a 3D printer at SIGGRAPH in my late teens and waited more than a decade to own one. When I found OpenSCAD, I could use programming to make real objects, and I've been designing printable things ever since. My most recent one is a shelf divider for a school library.</p>
+        <p>I first saw a 3D printer at SIGGRAPH in my late teens and waited more than a decade to own one. When I found OpenSCAD, I could use programming to make real objects, and I've been designing printable things ever since.</p>
       </div>
       <ol class="timeline" aria-label="Where I've worked">
         <li><span class="yr">2023–now</span><span><b>Aurora Solar</b> · Staff Software Engineer</span></li>

@@ -1,6 +1,6 @@
 # pwntato.github.io
 
-Source for https://pwntato.github.io, my personal site: AI projects, other software, and 3D printable designs.
+Source for https://pwntato.github.io, my personal site: AI projects and other software.
 
 It is a single static page (`index.html`) with images in `img/`. There is no build step. `.nojekyll` tells GitHub Pages to serve the files as they are.
 
